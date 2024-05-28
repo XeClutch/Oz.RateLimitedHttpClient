@@ -9,7 +9,7 @@ using Oz.RateLimiting;
 #### Establish a rate limit
 Let's get setup for 200 requests per hour.
 ```csharp
-var rateLimiter = new SimpleRateLimiter(5, TimeSpan.FromSeconds(1));
+var rateLimiter = new SimpleRateLimiter(200, TimeSpan.FromHours(1));
 var httpClient = new RateLimitedHttpClient(rateLimiter);
 ```
 #### Abiding by the rate limit
