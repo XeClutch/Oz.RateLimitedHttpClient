@@ -1,18 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net8.0</TargetFramework>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>enable</Nullable>
+        <TargetFramework>netstandard2.0</TargetFramework>
         <RootNamespace>Oz.RateLimiting</RootNamespace>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Authors>Joshua Ozeri</Authors>
         <Description>An HttpClient wrapper implementing SimpleRateLimiter.</Description>
         <RepositoryUrl>https://github.com/XeClutch/Oz.RateLimitedHttpClient</RepositoryUrl>
+        <LangVersion>7.3</LangVersion>
+        <Version>1.0.1</Version>
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Oz.SimpleRateLimiter" Version="1.0.0" />
+      <PackageReference Include="Oz.SimpleRateLimiter" Version="1.0.1" />
     </ItemGroup>
 
 </Project>

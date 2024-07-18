@@ -1,4 +1,12 @@
-﻿namespace Oz.RateLimiting;
+﻿using System.Net.Http;
 
-public class RateLimitedHttpClient(SimpleRateLimiter rateLimiter)
-    : HttpClient(new RateLimitedDelegatingHandler(rateLimiter, new HttpClientHandler())) { }
+namespace Oz.RateLimiting {
+    public class RateLimitedHttpClient : HttpClient {
+        private SimpleRateLimiter _rateLimiter;
+
+        public RateLimitedHttpClient(SimpleRateLimiter rateLimiter) : base(
+            new RateLimitedDelegatingHandler(rateLimiter, new HttpClientHandler())) {
+            _rateLimiter = rateLimiter;
+        }
+    }
+}
