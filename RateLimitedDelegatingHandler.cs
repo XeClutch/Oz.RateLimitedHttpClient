@@ -1,19 +1,24 @@
-﻿namespace Oz.RateLimiting;
+﻿using System.Net.Http;
+using System.Threading;
+using System.Threading.Tasks;
 
-public class RateLimitedDelegatingHandler(SimpleRateLimiter rateLimiter, HttpMessageHandler httpMessageHandler)
-    : DelegatingHandler(httpMessageHandler) {
-    // Overrides
-    protected override HttpResponseMessage Send(HttpRequestMessage request, CancellationToken cancellationToken) {
-        rateLimiter.WaitForAvailabilityAsync(cancellationToken)
-                    .Wait(cancellationToken);
-        return base.Send(request, cancellationToken);
-    }
-    protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request,
-                                                                 CancellationToken cancellationToken) {
-        if (await rateLimiter.WaitForAvailabilityAsync(cancellationToken)) {
-            return await base.SendAsync(request, cancellationToken);
+namespace Oz.RateLimiting {
+    public class RateLimitedDelegatingHandler : DelegatingHandler {
+        private SimpleRateLimiter _rateLimiter;
+
+        public RateLimitedDelegatingHandler(SimpleRateLimiter rateLimiter, HttpMessageHandler httpMessageHandler) :
+            base(httpMessageHandler) {
+            _rateLimiter = rateLimiter;
         }
+        
+        // Overrides
+        protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request,
+                                                                     CancellationToken cancellationToken) {
+            if (await _rateLimiter.WaitForAvailabilityAsync(cancellationToken)) {
+                return await base.SendAsync(request, cancellationToken);
+            }
 
-        throw new TaskCanceledException();
+            throw new TaskCanceledException();
+        }
     }
 }
