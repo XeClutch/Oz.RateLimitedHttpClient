@@ -1,4 +1,4 @@
-﻿# Oz.RateLimitedHttpClient <a href="https://www.nuget.org/packages/Oz.RateLimitedHttpClient"><img alt="NuGet" src="https://badgen.net/badge/Oz.RateLimitedHttpClient/v1.0.1/blue?icon=nuget"/></a>
+﻿# Oz.RateLimitedHttpClient <a href="https://www.nuget.org/packages/Oz.RateLimitedHttpClient"><img alt="NuGet" src="https://img.shields.io/nuget/v/Oz.RateLimitedHttpClient?label=Oz.RateLimitedHttpClient"/> <img alt="NuGet Downloads" src="https://img.shields.io/nuget/dt/Oz.RateLimitedHttpClient.svg?color=blue"/></a></a>
 RateLimitHttpClient is a HttpClient wrapper implementing [SimpleRateLimiter](https://www.github.com/XeClutch/Oz.SimpleRateLimiter).
 
 ## Usage
